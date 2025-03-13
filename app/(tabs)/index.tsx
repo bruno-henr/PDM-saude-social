@@ -1,17 +1,10 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
-
+import { ScrollView, StyleSheet } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import PostItem from '@/components/feed/PostItem';
-import { useEffect, useState } from 'react';
 import { api } from '@/api';
-import { Button } from 'react-native';
-import { useAuth } from '@/context/AuthContext';
 import { useQuery } from '@tanstack/react-query';
 
 export default function HomeScreen() {
-
-  const [posts, setPosts] = useState([]);
-  const { logout } = useAuth();
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
