@@ -1,12 +1,11 @@
 import { api } from '@/api';
-import SettingButton from '@/components/settings/SettingButton';
 import { useAuth, UserData } from '@/context/AuthContext';
 import { Feather } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Dimensions, Image, TextInput, TouchableOpacity } from 'react-native';
-import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { z } from 'zod';
 import { Toast } from "toastify-react-native";
 import { useNavigation } from 'expo-router';
