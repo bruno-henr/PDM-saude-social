@@ -24,6 +24,7 @@ type PostData = {
 }
 
 const CreatePost: React.FC = () => {
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [images, setImages] = useState<string[]>([]);
 
   const router = useRouter();
@@ -106,8 +107,7 @@ const CreatePost: React.FC = () => {
     formData.append('tags', "123");
     formData.append('medicoId', user.id);
     try {
-      // api.post('/post', formData)
-        fetch('https://f2e4-2804-2f4-200-7928-48ab-772-ea84-6b0c.ngrok-free.app/post', {
+        fetch(`${apiUrl}/post`, {
           method: 'POST',
           body: formData,
           headers: {
