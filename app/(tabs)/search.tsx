@@ -14,7 +14,6 @@ const Search: React.FC = () => {
 
   const fetchPostOrDoctor = async () => {
     api.get(`/search?query=${searchQuery}`).then(response => {
-      console.log('search => ', response.data)
       setSearchData(response.data)
     })
   }

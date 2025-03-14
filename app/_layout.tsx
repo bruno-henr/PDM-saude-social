@@ -18,9 +18,6 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Pressable } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import Comments from './(stack)/comments';
 
 const queryClient = new QueryClient()
 

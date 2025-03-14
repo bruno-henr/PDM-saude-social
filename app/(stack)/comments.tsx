@@ -32,13 +32,10 @@ const Comments: React.FC = () => {
     const inputRef = useRef<TextInput>(null);
     const router = useRouter();
     const { postagemId } = useLocalSearchParams();
-    console.log('local => ', postagemId)
 
     const queryClient = useQueryClient();
 
     const postCommentData: any = queryClient.getQueryData(["comments"]);
-    // console.log('postCommentData => ', postCommentData)
-    postCommentData.comments.map(e => console.log('comment => ', e))
 
     const {
         control,
@@ -50,7 +47,6 @@ const Comments: React.FC = () => {
     });
 
     const onSubmit = async ({ conteudo }: CommentData) => {
-        console.log('data => ', { conteudo, postagemId })
         api.post('/comment/register', { conteudo, postagemId }).then(() => {
             Toast.success('Comentário enviado');
             queryClient.invalidateQueries({ queryKey: ['posts'] })

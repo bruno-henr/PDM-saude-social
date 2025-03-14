@@ -87,11 +87,9 @@ const CreatePost: React.FC = () => {
   const inputRef = useRef<TextInput>(null);
 
   const onSubmit = async (data: PostData) => {
-    console.log('opaa')
 
     let formData = new FormData();
     images.forEach((uri, index) => {
-      console.log(uri)
       const fileExtension = uri.split(".").pop();
       const fileName = `upload_${index}.${fileExtension}`;
       const mimeType = `image/${fileExtension}`;

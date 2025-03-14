@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { z } from "zod";
@@ -7,6 +7,7 @@ import { api } from "@/api";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "expo-router";
 import { Toast } from "toastify-react-native";
+import * as Network from "expo-network";
 
 export const loginSchema = z.object({
     email: z.string().email("Email inválido"),
@@ -44,6 +45,11 @@ const Login: React.FC = () => {
             Toast.error('Email ou senha incorreto')
         })
     };
+
+    useEffect(async () => {
+        const ip = await Network.getIpAddressAsync();
+        console.log('ip => ', ip)
+      }, [])
 
     return (
         <View style={{ flex: 1, justifyContent: "center", padding: 20 }}>

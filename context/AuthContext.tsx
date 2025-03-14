@@ -58,7 +58,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     await AsyncStorage.removeItem("token");
     await AsyncStorage.removeItem("user");
     setUser(null as any);
-    console.log('teste loggout')
     router.replace("/(auth)/signIn/page");
   };
 

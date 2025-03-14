@@ -44,7 +44,6 @@ const SignUp: React.FC = () => {
       }
 
       let currentLocation = await Location.getCurrentPositionAsync({});
-      console.log('currentLocation => ', currentLocation.coords)
       setLocation(currentLocation.coords);
     })();
   }, []);
@@ -59,10 +58,6 @@ const SignUp: React.FC = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log('teste => ', JSON.stringify({
-      latitude: location.latitude,
-      longitude: location.longitude
-    }))
     api.post('/medico/register', {
       ...data,
       hospital: JSON.stringify({

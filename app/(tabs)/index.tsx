@@ -3,16 +3,22 @@ import { ThemedView } from '@/components/ThemedView';
 import PostItem from '@/components/feed/PostItem';
 import { api } from '@/api';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import * as Network from "expo-network";
 
 export default function HomeScreen() {
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
       const response = await api.get('/post');
-      console.log('data posts => ', response.data.data)
       return response.data.data;
     }
   });
+
+  useEffect(async () => {
+    const ip = await Network.getIpAddressAsync();
+    console.log('ip => ', ip)
+  }, [])
 
   if (isPending) return 'Loading...'
 

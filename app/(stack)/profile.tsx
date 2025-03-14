@@ -1,5 +1,6 @@
 import { api } from '@/api';
 import PostItem from '@/components/feed/PostItem';
+import ImageProfile from '@/components/ImageProfile';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -28,7 +29,11 @@ const Profile: React.FC = () => {
             <View style={style.contentMain}>
                 <View style={style.headerProfile}>
                     <View style={style.profilePicture}>
-                        <Image source={require("../../assets/images/react-logo.png")} />
+                        <ImageProfile 
+                            style={{}}
+                            pickedImage=''
+                            userImage={user.imagem}
+                        />
                     </View>
 
                     <TouchableOpacity onPress={() => {

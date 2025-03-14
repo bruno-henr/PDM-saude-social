@@ -17,21 +17,17 @@ const ButtonLike: React.FC<IProps> = ({ items, id, vits }) => {
   const queryClient = useQueryClient()
 
   const updatePost = async ({ id, newVits }: { id: string, newVits: number }) => {
-    console.log('body => ', { id, newVits })
     return await api.put('/post', { id, vits: String(newVits) }).then(() => {
-      console.log('bom')
     }).catch(() => console.log('bad'))
   };
 
   const updatePostMutation = useMutation({
     mutationFn: updatePost,
     onSuccess: () => {
-      console.log('deu bom')
       setLiked((prev) => !prev);
       queryClient.invalidateQueries({ queryKey: ['posts'] })
     },
     onError: () => {
-      console.log('deu ruim')
     }
   })
 
