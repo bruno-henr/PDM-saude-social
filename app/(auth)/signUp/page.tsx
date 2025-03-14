@@ -3,7 +3,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
 import { z } from 'zod';
 import * as Location from "expo-location";
-import { Button } from 'react-native';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native';

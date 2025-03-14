@@ -3,10 +3,12 @@ import { Text } from 'react-native';
 import { Image } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { View } from 'react-native';
+import ImageProfile from './ImageProfile';
 
 interface IProps {
     doctor: {
-        nome: string
+        nome: string,
+        imagem?: string
     }
 }
 
@@ -14,9 +16,10 @@ const ProfileItem: React.FC<IProps> = ({ doctor }) => {
     return (
         <View style={style.containerPerfil}>
             <View style={{ width: '18%' }}>
-                <Image
+                <ImageProfile 
+                    pickedImage=''
                     style={style.profile}
-                    source={require('../assets/images/icon.png')}
+                    userImage={doctor.imagem || ''}
                 />
             </View>
             <View style={style.postContent}>

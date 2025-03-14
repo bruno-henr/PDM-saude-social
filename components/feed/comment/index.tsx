@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import ButtonComment from '../ButtonComment';
 import ButtonLike from '../ButtonLike';
+import ImageProfile from '@/components/ImageProfile';
 
 type Post = {
   conteudo: string;
@@ -25,9 +26,10 @@ const CommentItem: React.FC<IProps> = ({ post }) => {
   return (
     <View style={style.container} key={post.id}>
       <View style={{ width: '18%' }}>
-        <Image
-          style={style.profile}
-          source={require('../../../assets/images/icon.png')}
+        <ImageProfile
+           pickedImage=''
+           style={style.profile}
+           userImage=''
         />
       </View>
       <View style={style.postContent}>

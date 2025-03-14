@@ -2,13 +2,15 @@ import { api } from '@/api';
 import { useAuth, UserData } from '@/context/AuthContext';
 import { Feather } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Dimensions, Image, TextInput, TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import { z } from 'zod';
 import { Toast } from "toastify-react-native";
 import { useNavigation } from 'expo-router';
+import * as ImagePicker from "expo-image-picker";
+import ImageProfile from '@/components/ImageProfile';
 
 export const userSchema = z.object({
   nome: z.string(),
@@ -22,6 +24,7 @@ type UserDataForm = Omit<UserData, "createdAt" | "updatedAt" | "imagem" | "senha
 
 
 const Account: React.FC = () => {
+  const [imageProfile, setImageProfile] = useState<string>('');
   const navigation = useNavigation();
   const { width } = Dimensions.get('window');
   const { logout } = useAuth();
@@ -48,12 +51,34 @@ const Account: React.FC = () => {
     })
   };
 
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      alert("Permissão necessária");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsMultipleSelection: false,
+      selectionLimit: 1,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImageProfile(result.assets[0].uri);
+    }
+  };
+
   return (
     <View style={style.container}>
-      <Image
-        style={style.profile}
-        source={require('../../assets/images/icon.png')}
-      />
+      <TouchableOpacity onPress={pickImage}>
+        <ImageProfile
+          pickedImage={imageProfile}
+          userImage={user.imagem}
+          style={style.profile}
+        />
+      </TouchableOpacity>
 
       <View style={{ flex: 1, width: width - 40 }}>
         <Text>Nome</Text>
@@ -156,8 +181,9 @@ const style = StyleSheet.create({
   },
   profile: {
     borderRadius: 50,
-    height: 160,
-    width: 160,
+    height: 120,
+    width: 120,
+    marginVertical: 50
   },
   input: {
     borderWidth: 1, borderColor: '#646161', borderRadius: 5, padding: 8, marginBottom: 5

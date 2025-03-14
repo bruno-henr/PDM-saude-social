@@ -1,3 +1,4 @@
+import ImageProfile from '@/components/ImageProfile';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
@@ -15,9 +16,10 @@ const ReplyItem: React.FC<IProps> = ({ reply }) => {
   return (
     <View style={style.container} key={reply.id}>
       <View style={{ width: '18%' }}>
-        <Image
+        <ImageProfile 
+          pickedImage=''
           style={style.profile}
-          source={require('../../../assets/images/icon.png')}
+          userImage=''
         />
       </View>
       <View style={style.postContent}>

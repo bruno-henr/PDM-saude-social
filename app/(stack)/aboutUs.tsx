@@ -3,8 +3,6 @@ import React from 'react';
 import { Image, ScrollView } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-// import { Container } from './styles';
-
 const AboutUs: React.FC = () => {
     const navigation = useNavigation();
 

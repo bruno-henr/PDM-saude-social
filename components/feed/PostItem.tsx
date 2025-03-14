@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import ButtonComment from './ButtonComment';
 import ButtonLike from './ButtonLike';
+import ImageProfile from '../ImageProfile';
 
 interface Doctor {
   nome: string;
@@ -27,9 +28,10 @@ const PostItem: React.FC<IProps> = ({ post }) => {
   return (
     <View style={style.container} key={post.id}>
       <View style={{ width: '18%' }}>
-        <Image
+        <ImageProfile
           style={style.profile}
-          source={require('../../assets/images/icon.png')}
+          pickedImage=''
+          userImage=''
         />
       </View>
       <View style={style.postContent}>

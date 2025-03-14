@@ -6,6 +6,7 @@ import { Image, TextInput, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { View } from "react-native";
+import ImageProfile from "./ImageProfile";
 
 export const CustomHeader = ({ navigation, route }: any) => {
     const { searchQuery, setSearchQuery } = useSearch();
@@ -28,9 +29,10 @@ export const CustomHeader = ({ navigation, route }: any) => {
                 })
             }}>
                 <View style={style.divContainerImage}>
-                    <Image
+                    <ImageProfile 
+                        userImage={user.imagem}
                         style={style.profile}
-                        source={require('../assets/images/icon.png')}
+                        pickedImage=""
                     />
                 </View>
             </TouchableOpacity>
@@ -51,7 +53,7 @@ export const CustomHeader = ({ navigation, route }: any) => {
                 />
             ) : (
                 <View style={{ flex: 1 }}>
-                    <Text style={{ fontWeight: 'bold', fontSize: 15, color: '#3b3b3b' }}>{user.nome}</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 15, color: '#3b3b3b' }}>{user?.nome || ''}</Text>
                 </View>
             )}
             <Feather
